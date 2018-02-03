@@ -10,7 +10,19 @@ zstyle ':prezto:load' pmodule \
   'history' \
   'directory' \
   'utility' \
-  'completion'
+  'completion' \
+  'history-substring-search' \
+  'syntax-highlighting' \
+  'autosuggestions'
 
 # Sets terminal window and tab titles.
 zstyle ':prezto:module:terminal' auto-title 'yes'
+
+# Set key bindings to emacs.
+zstyle ':prezto:module:editor' key-bindings 'emacs'
+
+# Enable dot expansion - autoconvert .... to ../../
+zstyle ':prezto:module:editor' dot-expansion 'yes'
+
+# Enable coloring for autosuggestions.
+zstyle ':prezto:module:autosuggestions:color' found ''
