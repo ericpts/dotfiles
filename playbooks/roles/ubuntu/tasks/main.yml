@@ -19,7 +19,9 @@
     - mosh
     - most
     - python
+    - python3
     - python-pip
+    - python3-pip
     # for FASD
     - python-pycurl
     - python3
@@ -37,3 +39,9 @@
   become: yes
   become_method: sudo
   copy: src=fasd dest=/usr/local/bin/fasd mode=755
+
+- pip:
+    name: neovim
+    executable: pip3
+  become: yes
+  become_method: sudo

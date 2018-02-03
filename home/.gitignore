@@ -1,17 +1,4 @@
-.DS_Store
 *.pyc
-.codeintel/config
 .pylintrc
-venv
-nmvg/
 a.out
 
-# uberVU mess
-hack.sh
-
-# InfoEducatie
-Gemfile
-Gemfile.lock
-
-# Sublime
-sftp-config.json

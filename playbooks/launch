@@ -3,7 +3,7 @@
 git pull
 
 if [[ `uname` == 'Linux' ]]; then
-  ansible-playbook -i inventory ubuntu.yml
+    ansible-playbook -i inventory ubuntu.yml
 else
-  ansible-playbook -i inventory osx.yml
+    echo "This repo is only for Linux!"
 fi

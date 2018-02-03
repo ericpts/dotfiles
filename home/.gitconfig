@@ -1,13 +1,13 @@
 [user]
-	name = Alex Palcuie
-	email = alex.palcuie@gmail.com
+	name = Eric Stavarache
+	email = ericptst@gmail.com
     signingkey = 863809E2
 [core]
     editor = vim
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
 [web]
-    browser = google-chrome
+    browser = firefox
 [merge]
     tool = vimdiff
 [color]
