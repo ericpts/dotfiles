@@ -10,7 +10,6 @@ fi
 cd ~/dotfiles
 
 sudo apt -qq update
-sudo apt -qq install ansible software-properties-common git
+sudo apt -qq install software-properties-common git
 
-cd playbooks
-./launch
+./launch.sh

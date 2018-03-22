@@ -65,6 +65,10 @@ Plug 'rust-lang/rust.vim'
 " Haskell
 Plug 'neovimhaskell/haskell-vim'
 
+" Tmux
+Plug 'christoomey/vim-tmux-navigator'
+
+
 call plug#end()
 
 
