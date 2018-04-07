@@ -22,6 +22,7 @@ function install_packages() {
         wget \
         zsh \
         neovim \
+        terminator \
 
 
     # Install neovim and set the proper alternatives.
@@ -35,11 +36,17 @@ function install_packages() {
 
 function make_symlinks() {
     echo "Making symlinks..." | tee -a install.log
-    for f in ~/dotfiles/home/.*; do
-        if [ -f "$f" ]; then
-            echo "Creating symlink to $(basename $f)"
-            ln -sf "$f" "$HOME/$(basename "$f")"
+    for f in $(find ~/dotfiles/home/ -type f); do
+        if [ ! -f "$f" ]; then
+            continue
         fi
+
+        after_home="${f##~/dotfiles/home/}"
+        local_path="$HOME/$after_home"
+        echo "Creating symlink for $local_path"
+
+        mkdir -p $(dirname $local_path)
+        ln -sf "$f" "$local_path"
     done
 }
 
