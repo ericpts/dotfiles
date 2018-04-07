@@ -2,9 +2,8 @@
 
 Hacking like a geek:
 
-* the `playbooks` folder contains Ansible that provisions a machine with apps and configs
 * my main machine uses Debian.
-* ZSH shell with Prezto and my .zshrc
+* ZSH shell with ohmyzsh and some nice plugins.
 * VIM provisioned with VimPlug
 
 ## Setup for new linux machine
