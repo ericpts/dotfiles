@@ -93,3 +93,5 @@ export VISUAL='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source $HOME/.cargo/env
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

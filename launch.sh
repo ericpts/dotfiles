@@ -52,6 +52,7 @@ function install_plugins() {
     fi
 
 
+    echo "Changing shell to zsh..."
     # Change shell to zsh
     chsh -s $(which zsh)
     sudo chsh -s $(which zsh)
@@ -60,11 +61,6 @@ function install_plugins() {
     echo "Installing ohmyzsh..."
     ZSH=~/.oh-my-zsh
     git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git $ZSH
-
-    if [ -f ~/.zshrc ] || [ -f ~/.zshrc ]; then
-        echo "Backing up existing .zshrc"
-        mv ~/.zshrc ~/.zshrc_pre_ohmyzsh
-    fi
     )
 
     (
@@ -81,6 +77,7 @@ function install_plugins() {
     if [ -e ~/.tmux/plugins/tpm ]; then
         rm -rf ~/.tmux/plugins/tpm
     fi
+
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     ~/.tmux/plugins/tpm/bin/update_plugins all
 
@@ -92,7 +89,7 @@ set -e
 
 git pull &> /dev/null
 install_packages
-install_plugins
 make_symlinks
+install_plugins
 
 echo "Done!"
