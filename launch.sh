@@ -88,7 +88,7 @@ function install_plugins() {
     fi
 
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    ~/.tmux/plugins/tpm/bin/update_plugins all
+    ~/.tmux/plugins/tpm/bin/install_plugins all
 
     # Install all vim plugins in ex mode.
     vim +PlugInstall! +qall

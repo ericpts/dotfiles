@@ -34,9 +34,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'raimondi/delimitmate'
 
-" Filetree
-Plug 'scrooloose/nerdtree'
-
 " Git
 Plug 'tpope/vim-fugitive'
 
