@@ -68,14 +68,14 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# Use a colorful terminal.
+export TERM="xterm-256color"
 
 # Use vim as the default editor.
 export EDITOR='vim'
 export VISUAL='vim'
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
