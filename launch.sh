@@ -30,7 +30,9 @@ function install_packages() {
     # Install neovim and set the proper alternatives.
     sudo pip3 install neovim
     sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 80
+    sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 80
     sudo update-alternatives --set vim /usr/bin/nvim
+    sudo update-alternatives --set vi /usr/bin/nvim
 
     # Install rust.
     curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
