@@ -1,13 +1,13 @@
 # Make core utils better
 alias grep='grep --color=auto'
-alias ls='ls --color=auto'
+alias ls='exa --color=auto'
 export TIME_STYLE=long-iso # makes YYYY-MM-DD in the ls output
 export BLOCK_SIZE="'1" # makes 1,000,000 for big sizes
 
 # Common commands
 alias reload='source ~/.zshrc'
 alias netest='ping 8.8.8.8'
-alias simple='python2 -m SimpleHTTPServer'
+alias simple='python3 -m SimpleHTTPServer'
 alias hgrep='history -fd 0 | grep'
 
 # Important files
@@ -19,7 +19,10 @@ alias e="exit"
 alias h='history -fd -500'
 
 get_youtube_mp3() {
+    (
+    cd $HOME/Music
     youtube-dl --extract-audio --audio-format mp3 "$1"
+    )
 }
 
 # Analyze history data

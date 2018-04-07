@@ -23,6 +23,8 @@ function install_packages() {
         zsh \
         neovim \
         terminator \
+        zlibc \
+        zlib1g-dev \
 
 
     # Install neovim and set the proper alternatives.
@@ -90,6 +92,9 @@ function install_plugins() {
 
     # Install all vim plugins in ex mode.
     vim +PlugInstall! +qall
+
+    # Install rust replacements for rgrep and ls
+    $HOME/.cargo/bin/cargo install -f ripgrep exa
 }
 
 set -e
