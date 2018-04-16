@@ -47,21 +47,27 @@ Plug 'vim-airline/vim-airline'
 
 
 " Clojure
-Plug 'vim-scripts/VimClojure'
-Plug 'tpope/vim-fireplace'
+Plug 'vim-scripts/VimClojure', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 
 " Javascript
-Plug 'jelera/vim-javascript-syntax'
-Plug 'pangloss/vim-javascript'
-Plug 'ternjs/tern_for_vim'
+Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'ternjs/tern_for_vim', {'for': 'javascript'}
 
 
 " Rust
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', { 'for': 'rust'}
 
 " Haskell
-Plug 'neovimhaskell/haskell-vim'
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
+Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
+Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
+
 
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -111,7 +117,6 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_autoclose_preview_window_after_completion = 0
 
 let g:ycm_confirm_extra_conf = 0
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " EasyMotion Settings
