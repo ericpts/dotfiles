@@ -43,6 +43,10 @@ Plug 'terryma/vim-multiple-cursors'
 " Nice status bar at the bottom
 Plug 'vim-airline/vim-airline'
 
+" Async linting
+Plug 'neomake/neomake'
+
+
 " Language related plugins
 
 
@@ -91,6 +95,9 @@ set autoread
 
 " Set relative line numbering
 set rnu
+" Show the absolute line number instead of 0.
+set nu
+
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -127,6 +134,26 @@ nmap <leader><leader>w <Plug>(easymotion-bd-w)
 nmap <leader><leader>W <Plug>(easymotion-bd-W)
 nmap <leader><leader>e <Plug>(easymotion-bd-e)
 nmap <leader><leader>E <Plug>(easymotion-bd-E)
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Neomake Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Automatically call neomake:
+"
+" When writing a buffer (no delay).
+call neomake#configure#automake('w')
+
+" When writing a buffer (no delay), and on normal mode changes (after 750ms).
+call neomake#configure#automake('nw', 750)
+
+" When reading a buffer (after 1s), and when writing (no delay).
+call neomake#configure#automake('rw', 1000)
+
+" Full config: when writing or reading a buffer, and on changes in insert and
+" normal mode (after 1s; no delay when writing).
+call neomake#configure#automake('nrwi', 500)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching settings
