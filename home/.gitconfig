@@ -56,3 +56,5 @@
 	required = true
 [include]
     path = ~/.gitconfiglocal
+[pull]
+	rebase = true
