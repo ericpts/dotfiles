@@ -97,7 +97,7 @@ function install_plugins() {
     vim +PlugInstall! +qall
 
     # Install rust replacements for rgrep and ls
-    $HOME/.cargo/bin/cargo install -f ripgrep exa
+    $HOME/.cargo/bin/cargo install -f ripgrep exa bat
 }
 
 set -e

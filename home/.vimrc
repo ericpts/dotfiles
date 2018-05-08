@@ -58,7 +58,7 @@ Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 " Javascript
 Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-Plug 'ternjs/tern_for_vim', {'for': 'javascript'}
+" Plug 'ternjs/tern_for_vim', {'for': 'javascript'}
 
 
 " Rust
@@ -155,6 +155,13 @@ call neomake#configure#automake('rw', 1000)
 " normal mode (after 1s; no delay when writing).
 call neomake#configure#automake('nrwi', 500)
 
+" Config neomake for python3.
+let g:neomake_python_python_exe = 'python3'
+
+" Disable clang for neomake because YCM already has it.
+let g:neomake_cpp_enabled_makers = []
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -201,6 +208,9 @@ set hlsearch
 
 " Makes search act like search in modern browsers
 set incsearch
+
+" Live preview of %s.
+set inccommand=split
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -285,7 +295,7 @@ set tabstop=4
 set lbr
 set tw=500
 
-set ai "Auto indent
+" set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 

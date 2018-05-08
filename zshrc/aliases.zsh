@@ -1,6 +1,7 @@
 # Make core utils better
 alias grep='grep --color=auto'
 alias ls='exa --color=auto'
+alias cat='bat'
 export TIME_STYLE=long-iso # makes YYYY-MM-DD in the ls output
 export BLOCK_SIZE="'1" # makes 1,000,000 for big sizes
 
