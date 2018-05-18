@@ -107,6 +107,9 @@ let g:mapleader = "\<Space>"
 " Fast saving
 nmap <leader>w :w!<cr>
 
+" Play nice with C's switch statements.
+set cinoptions=l1
+
 
 " Ignore case when searching with / or ?.
 set ic
