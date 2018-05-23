@@ -68,7 +68,8 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 source $HOME/dotfiles/zshrc/aliases.zsh
 source $HOME/dotfiles/zshrc/key-bindings.zsh
 
-export PATH="$PATH:$HOME/.local/bin/"
+export GOPATH="$HOME/.go/"
+export PATH="$PATH:$HOME/.local/bin/:$GOPATH/bin/"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

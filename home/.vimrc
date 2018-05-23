@@ -46,6 +46,9 @@ Plug 'vim-airline/vim-airline'
 " Async linting
 Plug 'neomake/neomake'
 
+" Tabularize data.
+Plug 'godlygeek/tabular'
+
 
 " Language related plugins
 
@@ -73,8 +76,13 @@ Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
 Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 
 
+" LaTex
+Plug 'lervag/vimtex', { 'for': 'tex' }
+
+
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
+
 
 
 call plug#end()
@@ -97,7 +105,6 @@ set autoread
 set rnu
 " Show the absolute line number instead of 0.
 set nu
-
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -163,6 +170,15 @@ let g:neomake_python_python_exe = 'python3'
 
 " Disable clang for neomake because YCM already has it.
 let g:neomake_cpp_enabled_makers = []
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LaTex settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" See https://github.com/lervag/vimtex/wiki/introduction#neovim
+let g:vimtex_compiler_progname = 'nvr'
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
