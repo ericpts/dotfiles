@@ -36,7 +36,7 @@ function install_packages() {
 
     # Install rust.
     curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
-    rustup component add rust-src
+    ~/.cargo/bin/rustup component add rust-src
 }
 
 function make_symlinks() {
@@ -102,7 +102,7 @@ function install_plugins() {
 
 set -e
 
-git pull &> /dev/null
+git pull
 install_packages
 make_symlinks
 install_plugins
