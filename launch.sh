@@ -9,6 +9,7 @@ function install_packages() {
         bash \
         curl \
         git \
+        cmake \
         htop \
         nmap \
         mosh \
@@ -25,6 +26,7 @@ function install_packages() {
         terminator \
         zlibc \
         zlib1g-dev \
+        ranger\
 
 
     # Install neovim and set the proper alternatives.
