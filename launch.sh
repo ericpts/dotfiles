@@ -26,7 +26,8 @@ function install_packages() {
         terminator \
         zlibc \
         zlib1g-dev \
-        ranger\
+        ranger \
+        libpython2.7-dev \
 
 
     # Install neovim and set the proper alternatives.

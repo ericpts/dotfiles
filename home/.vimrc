@@ -49,6 +49,11 @@ Plug 'neomake/neomake'
 " Tabularize data.
 Plug 'godlygeek/tabular'
 
+" Org-mode for vim.
+Plug 'jceb/vim-orgmode'
+" required by org-mode.
+Plug 'tpope/vim-speeddating'
+
 
 " Language related plugins
 
