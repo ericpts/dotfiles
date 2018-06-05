@@ -103,6 +103,9 @@ set history=700
 filetype plugin on
 filetype indent on
 
+" Automatically enter a new line when reaching a maximum column.
+set tw=80
+
 " Set to auto read when a file is changed from the outside
 set autoread
 
