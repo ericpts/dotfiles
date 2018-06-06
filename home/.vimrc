@@ -103,9 +103,6 @@ set history=700
 filetype plugin on
 filetype indent on
 
-" Automatically enter a new line when reaching a maximum column.
-set tw=80
-
 " Set to auto read when a file is changed from the outside
 set autoread
 
@@ -318,9 +315,9 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
-" Linebreak on 500 characters
+" Linebreak on 80 characters
 set lbr
-set tw=500
+set tw=80
 
 " set ai "Auto indent
 set si "Smart indent
