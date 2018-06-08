@@ -414,6 +414,8 @@ autocmd BufWrite * :call DeleteTrailingWS()
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
+set spelllang=ro,en_us
+
 " Shortcuts using <leader>
 map <leader>sn ]s
 map <leader>sp [s
