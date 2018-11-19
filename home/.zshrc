@@ -89,3 +89,6 @@ export PATH="$PATH:$HOME/.local/bin/:$GOPATH/bin/"
 source $HOME/.cargo/env
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# opam configuration
+test -r /home/ericpts/.opam/opam-init/init.zsh && . /home/ericpts/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

@@ -122,6 +122,8 @@ nmap <leader>w :w!<cr>
 " Play nice with C's switch statements.
 set cinoptions=l1
 
+set cino=N-s
+
 
 " Ignore case when searching with / or ?.
 set ic
@@ -183,6 +185,9 @@ let g:neomake_cpp_enabled_makers = []
 
 " See https://github.com/lervag/vimtex/wiki/introduction#neovim
 let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_view_method = 'mupdf'
+let g:vimtex_quickfix_latexlog = {'default' : 0}
+
 
 
 
@@ -252,6 +257,10 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+
+
+" 'smartindent' makes comments in Python not have any indentation.
+set nosmartindent
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline settings
