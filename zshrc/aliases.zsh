@@ -39,3 +39,4 @@ alias -s log=less
 alias -s html=open
 
 alias em="emacsclient -c"
+alias emm="emacsclient"
