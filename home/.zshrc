@@ -47,10 +47,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   z
-  virtualenv
-  autoswitch_virtualenv
   git
-  tmux
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -99,6 +96,3 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
-eval "$(pyenv virtualenv-init -)"
