@@ -46,6 +46,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  z
+  virtualenv
+  autoswitch_virtualenv
   git
   tmux
   zsh-autosuggestions
@@ -53,6 +56,8 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # User configuration
 
@@ -67,9 +72,11 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 
 source $HOME/dotfiles/zshrc/aliases.zsh
 source $HOME/dotfiles/zshrc/key-bindings.zsh
+source $HOME/dotfiles/zshrc/envs.zsh
 
 export GOPATH="$HOME/.go/"
-export PATH="$PATH:$HOME/.local/bin/:$GOPATH/bin/"
+export PATH="$PATH:$HOME/.local/bin/:$GOPATH/bin/:$HOME/tex/bin/x86_64-linux:$HOME/.emacs.d/bin"
+export PATH="$PATH:$HOME/.julia/julia-1.5.2/bin/"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -86,9 +93,12 @@ export PATH="$PATH:$HOME/.local/bin/:$GOPATH/bin/"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Rust configurations.
 source $HOME/.cargo/env
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# opam configuration
-test -r /home/ericpts/.opam/opam-init/init.zsh && . /home/ericpts/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+eval "$(pyenv virtualenv-init -)"

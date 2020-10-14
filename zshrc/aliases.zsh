@@ -2,41 +2,19 @@
 alias grep='grep --color=auto'
 alias ls='exa --color=auto'
 alias cat='bat'
+
+alias ssh='export TERM=xterm-256color && ssh'
+
 export TIME_STYLE=long-iso # makes YYYY-MM-DD in the ls output
 export BLOCK_SIZE="'1" # makes 1,000,000 for big sizes
 
 # Common commands
-alias reload='source ~/.zshrc'
-alias netest='ping 8.8.8.8'
-alias simple='python3 -m SimpleHTTPServer'
-alias hgrep='history -fd 0 | grep'
 
-# Important files
-alias zshrc="vim ~/.zshrc"
-alias vimrc="vim ~/.vimrc"
+alias fd="fdfind"
 
-# Shorthands
-alias e="exit"
-alias h='history -fd -500'
-
-get_youtube_mp3() {
-    (
-    cd $HOME/Music
-    youtube-dl --extract-audio --audio-format mp3 "$1"
-    )
+hash_directory() {
+    tar cf - "$1" | sha1sum | cut -d" " -f1 | head -c5
+    echo ""
 }
 
-# Analyze history data
-analyze_history(){
-    cut -f2 -d";" ~/.zsh_history | sort | uniq -c | sort -nr | head -n 30
-}
-analyze_commands(){
-    cut -f2 -d";" ~/.zsh_history | cut -d' ' -f1 | sort | uniq -c | sort -nr | head -n 30
-}
-
-# Suffix aliases
-alias -s log=less
-alias -s html=open
-
-alias em="emacsclient -c"
-alias emm="emacsclient"
+alias feh="feh --scale-down --auto-zoom"

@@ -18,9 +18,14 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'nathanaelkane/vim-indent-guides'
 
+Plug 'liuchengxu/vim-which-key'
+
 " Autocomplete
-Plug 'Valloric/YouCompleteMe'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'preservim/nerdtree'
+
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -43,9 +48,6 @@ Plug 'terryma/vim-multiple-cursors'
 " Nice status bar at the bottom
 Plug 'vim-airline/vim-airline'
 
-" Async linting
-Plug 'neomake/neomake'
-
 " Tabularize data.
 Plug 'godlygeek/tabular'
 
@@ -54,6 +56,15 @@ Plug 'jceb/vim-orgmode'
 " required by org-mode.
 Plug 'tpope/vim-speeddating'
 
+
+" Easily surround text with tags, quotes etc.
+Plug 'tpope/vim-surround'
+
+" Easily comment stuff.
+Plug 'tpope/vim-commentary'
+
+" Diff two selections
+Plug 'AndrewRadev/linediff.vim'
 
 " Language related plugins
 
@@ -67,27 +78,28 @@ Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 " Plug 'ternjs/tern_for_vim', {'for': 'javascript'}
+"
+
+
+Plug 'JuliaEditorSupport/julia-vim'
 
 
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust'}
 
-" Haskell
-Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
-Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
-Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
-Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
-Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
-
 
 " LaTex
-Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'lervag/vimtex'
 
 
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
 
+
+Plug 'morhetz/gruvbox'
+
+
+Plug 'skywind3000/asyncrun.vim'
 
 
 call plug#end()
@@ -129,18 +141,81 @@ set cino=N-s
 set ic
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" YCM Settings
+" Coc Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set hidden
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
 
-let g:ycm_global_ycm_extra_conf = "$HOME/.ycm_extra_conf.py"
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
 
-let g:ycm_collect_identifiers_from_tags_files = 1
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-let g:ycm_seed_identifiers_with_syntax = 1
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-let g:ycm_autoclose_preview_window_after_completion = 0
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
 
-let g:ycm_confirm_extra_conf = 0
+nmap <silent> ,en <Plug>(coc-diagnostic-next-error)
+nmap <silent> ,ep <Plug>(coc-diagnostic-prev-error)
+
+nmap <silent> ,ht <Plug>(coc-type-definition)
+
+nmap <leader>fpr :source ~/.vimrc <CR>
+nmap <leader>fpe :e ~/.vimrc <CR>
+
+nmap <leader>gd :call CocAction("jumpDefinition", "drop")<CR>
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if has('patch8.1.1068')
+  " Use `complete_info` if your (Neo)Vim version supports it.
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+
+command! -bang -nargs=? -complete=dir BatFiles
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+
+function! Foo(dir)
+  let tf = tempname()
+  call writefile(['.'], tf)
+
+  call fzf#vim#files(a:dir, {'source': 'fd', 'options': ['--bind', printf('ctrl-p:reload:base="$(cat %s)"/..; echo "$base" > %s; fd . "$base"', shellescape(tf), shellescape(tf))]})
+endfunction
+
+command! -nargs=* Foo call Foo(<q-args>)
+
+
+
+nmap <silent> <leader>cc :CocCommand <CR>
+nmap <silent> <leader>ce :CocConfig <CR>
+
+nmap <silent> <leader>ff :BatFiles <CR>
+
+nmap <silent> <leader>bb :Buffers <CR>
+
+nmap <silent> <leader>bk :bp<BAR>bd#<CR>
+
+nmap <silent> <leader>mr <Plug>(coc-rename)
+
+
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " EasyMotion Settings
@@ -153,31 +228,6 @@ nmap <leader><leader>e <Plug>(easymotion-bd-e)
 nmap <leader><leader>E <Plug>(easymotion-bd-E)
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Neomake Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Automatically call neomake:
-"
-" When writing a buffer (no delay).
-call neomake#configure#automake('w')
-
-" When writing a buffer (no delay), and on normal mode changes (after 750ms).
-call neomake#configure#automake('nw', 750)
-
-" When reading a buffer (after 1s), and when writing (no delay).
-call neomake#configure#automake('rw', 1000)
-
-" Full config: when writing or reading a buffer, and on changes in insert and
-" normal mode (after 1s; no delay when writing).
-call neomake#configure#automake('nrwi', 500)
-
-" Config neomake for python3.
-let g:neomake_python_python_exe = 'python3'
-
-" Disable clang for neomake because YCM already has it.
-let g:neomake_cpp_enabled_makers = []
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LaTex settings
@@ -185,8 +235,15 @@ let g:neomake_cpp_enabled_makers = []
 
 " See https://github.com/lervag/vimtex/wiki/introduction#neovim
 let g:vimtex_compiler_progname = 'nvr'
-let g:vimtex_view_method = 'mupdf'
-let g:vimtex_quickfix_latexlog = {'default' : 0}
+let g:tex_flavor = 'latex'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" WhichKey settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+set timeoutlen=500
+
 
 
 
@@ -258,6 +315,9 @@ set novisualbell
 set t_vb=
 set tm=500
 
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
 
 " 'smartindent' makes comments in Python not have any indentation.
 set nosmartindent
@@ -280,15 +340,15 @@ syntax enable
 
 set t_Co=256
 
-colorscheme default
-set background=dark
+set background=light
+colorscheme gruvbox
 
 " Show indent guides.
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
-:hi IndentGuidesOdd ctermbg=236
-:hi IndentGuidesEven ctermbg=237
+" ":hi IndentGuidesOdd ctermbg=236
+" ":hi IndentGuidesEven ctermbg=237
 
 
 " Highlight current line
@@ -309,6 +369,7 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
+set nowritebackup
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -374,7 +435,7 @@ nmap <leader>h :bprevious<CR>
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
+map <leader>dc :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
 try
@@ -431,18 +492,6 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
-
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
